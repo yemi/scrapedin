@@ -5,7 +5,7 @@ const profile = require("./profile/profile");
 const company = require("./company/company");
 const logger = require("./logger")(__filename);
 
-export default async (
+module.exports = async (
   {
     cookies,
     email,
