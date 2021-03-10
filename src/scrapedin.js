@@ -1,8 +1,8 @@
-import chromium from "chrome-aws-lambda";
-import puppeteerCore from "puppeteer-core";
-import login from "./login";
-import profile from "./profile/profile";
-import company from "./company/company";
+const chromium = require("chrome-aws-lambda");
+const puppeteerCore = require("puppeteer-core");
+const login = require("./login");
+const profile = require("./profile/profile");
+const company = require("./company/company");
 const logger = require("./logger")(__filename);
 
 export default async (
