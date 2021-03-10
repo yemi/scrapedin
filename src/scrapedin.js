@@ -1,41 +1,71 @@
-const puppeteer = require('puppeteer')
-const login = require('./login')
-const profile = require('./profile/profile')
-const company = require('./company/company')
-const logger = require('./logger')(__filename)
+import chromium from "chrome-aws-lambda";
+import puppeteerCore from "puppeteer-core";
+import login from "./login";
+import profile from "./profile/profile";
+import company from "./company/company";
+const logger = require("./logger")(__filename);
 
-module.exports = async ({ cookies, email, password, isHeadless, hasToLog, hasToGetContactInfo, puppeteerArgs, puppeteerAuthenticate, endpoint } = { isHeadless: true, hasToLog: false }) => {
+export default async (
+  {
+    cookies,
+    email,
+    password,
+    // isHeadless,
+    hasToLog,
+    hasToGetContactInfo,
+    // puppeteerArgs,
+    puppeteerAuthenticate,
+    endpoint,
+  } = { hasToLog: false }
+) => {
   if (!hasToLog) {
-    logger.stopLogging()
+    logger.stopLogging();
   }
-  logger.info('initializing')
+  logger.info("initializing");
 
-  let browser;
-  if(endpoint){
-    browser = await puppeteer.connect({
-      browserWSEndpoint: endpoint,
-    });
-  }else{
-    const args = Object.assign({ headless: isHeadless, args: ['--no-sandbox'] }, puppeteerArgs)
-    browser = await puppeteer.launch(args)
-  }
+  let browser = await chromium.puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
+    ignoreHTTPSErrors: true,
+  });
 
   if (cookies) {
-    logger.info('using cookies, login will be bypassed')
+    logger.info("using cookies, login will be bypassed");
   } else if (email && password) {
-    logger.info('email and password was provided, we\'re going to login...')
+    logger.info("email and password was provided, we're going to login...");
 
     try {
-      await login(browser, email, password, logger)
+      await login(browser, email, password, logger);
     } catch (e) {
-      if(!endpoint){
-        await browser.close()
+      if (!endpoint) {
+        await browser.close();
       }
-      throw e
+      throw e;
     }
   } else {
-    logger.warn('email/password and cookies wasn\'t provided, only public data will be collected')
+    logger.warn(
+      "email/password and cookies wasn't provided, only public data will be collected"
+    );
   }
 
-  return (url, waitMs) => url.includes('/school/') || url.includes('/company/') ? company(browser, cookies, url, waitMs, hasToGetContactInfo, puppeteerAuthenticate) :profile(browser, cookies, url, waitMs, hasToGetContactInfo, puppeteerAuthenticate)
-}
+  return (url, waitMs) =>
+    url.includes("/school/") || url.includes("/company/")
+      ? company(
+          browser,
+          cookies,
+          url,
+          waitMs,
+          hasToGetContactInfo,
+          puppeteerAuthenticate
+        )
+      : profile(
+          browser,
+          cookies,
+          url,
+          waitMs,
+          hasToGetContactInfo,
+          puppeteerAuthenticate
+        );
+};

@@ -16,15 +16,19 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/linkedtales/scrapedin"
+    "url": "https://github.com/yemi/scrapedin"
   },
   "bugs": {
-    "url": "https://github.com/linkedtales/scrapedin/issues"
+    "url": "https://github.com/yemi/scrapedin/issues"
   },
   "author": "Wagner Leonardi <leonardiwagner@gmail.com>",
   "license": "Apache-2.0",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "dependencies": {
-    "puppeteer": "1.13.0",
+    "chrome-aws-lambda": "^7.0.0",
+    "puppeteer-core": "^8.0.0",
     "winston": "3.1.0"
   },
   "devDependencies": {
