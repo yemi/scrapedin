@@ -12,7 +12,8 @@
     "test": "mocha src/**.test.js",
     "lint": "standard --fix 'src/*.js'",
     "coverage": "nyc npm test",
-    "coverage:report": "nyc --reporter=lcov npm test"
+    "coverage:report": "nyc --reporter=lcov npm test",
+    "go": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -27,8 +28,8 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
-    "chrome-aws-lambda": "^7.0.0",
-    "puppeteer-core": "^8.0.0",
+    "chrome-aws-lambda": "^9.0.0",
+    "puppeteer-core": "^9.0.0",
     "winston": "3.1.0"
   },
   "devDependencies": {
