@@ -25,7 +25,8 @@ const loggerWrapper = (absoluteFilePath) => {
       logger.error(
         `[${file}] ${message}${
           error && error.stack ? error.stack : error || ""
-        }`
+        }`,
+        { error }
       ),
     stopLogging: () => {
       logger.silent = true;

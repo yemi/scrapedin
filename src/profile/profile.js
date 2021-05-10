@@ -109,6 +109,8 @@ module.exports = async (
     contact,
   };
 
+  logger.error("test", { rawProfile });
+
   const cleanedProfile = cleanProfileData(rawProfile);
   return cleanedProfile;
 };
