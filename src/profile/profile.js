@@ -53,8 +53,8 @@ module.exports = async (
   }
 
   const [profile] = await scrapSection(page, template.profile);
-  logger.info("profile", { profile, test: "tesssst" });
-  logger.info("profile again", {
+  logger.error("profile", { profile, test: "tesssst" });
+  logger.error("profile again", {
     profile: JSON.stringify(profile),
     test: "tesssst",
   });
