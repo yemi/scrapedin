@@ -53,7 +53,11 @@ module.exports = async (
   }
 
   const [profile] = await scrapSection(page, template.profile);
-  logger.info("profile", { profile });
+  logger.info("profile", { profile, test: "tesssst" });
+  logger.info("profile again", {
+    profile: JSON.stringify(profile),
+    test: "tesssst",
+  });
   const [about] = await scrapSection(page, template.about);
   const positions = await scrapSection(page, template.positions);
   const educations = await scrapSection(page, template.educations);
