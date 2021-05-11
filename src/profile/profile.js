@@ -34,11 +34,11 @@ module.exports = async (
 
   for (var i = 0; i < chunksCount; i++) {
     logger.error("page source", {
-      content: content.slice(cursor, partLength),
+      content: content.slice(cursor, cursor + chunkLength),
       part: i + 1,
     });
 
-    cursor += partLength;
+    cursor += chunkLength;
   }
 
   const profilePageIndicatorSelector = ".pv-profile-section";
