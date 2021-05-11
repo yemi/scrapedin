@@ -21,7 +21,7 @@ module.exports = async (
 
   const page = await openPage({ browser, cookies, url, puppeteerAuthenticate });
 
-  const content = await page.text();
+  const content = await page.content();
 
   logger.error("page source", {
     content: content,
