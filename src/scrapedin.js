@@ -24,8 +24,8 @@ module.exports = async (
   logger.info("initializing");
 
   let browser = await chromium.puppeteer.launch({
-    // args: chromium.args,
-    args: ["--no-sandbox"],
+    args: [...chromium.args, "--no-sandbox"],
+    // args: ["--no-sandbox"],
     // defaultViewport: chromium.defaultViewport,
     executablePath: await chromium.executablePath,
     headless: chromium.headless,
