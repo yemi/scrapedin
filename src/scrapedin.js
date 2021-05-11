@@ -13,7 +13,7 @@ module.exports = async (
     // isHeadless,
     hasToLog,
     hasToGetContactInfo,
-    // puppeteerArgs,
+    puppeteerArgs,
     puppeteerAuthenticate,
     endpoint,
   } = { hasToLog: false }
@@ -23,13 +23,12 @@ module.exports = async (
   }
   logger.info("initializing");
 
-  let browser = await chromium.puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath,
-    headless: chromium.headless,
-    ignoreHTTPSErrors: true,
-  });
+  const args = Object.assign(
+    { headless: isHeadless, args: ["--no-sandbox"] },
+    puppeteerArgs
+  );
+
+  let browser = await chromium.puppeteer.launch(args);
 
   if (cookies) {
     logger.info("using cookies, login will be bypassed");
