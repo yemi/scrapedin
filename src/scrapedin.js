@@ -23,12 +23,14 @@ module.exports = async (
   }
   logger.info("initializing");
 
-  const args = Object.assign(
-    { headless: isHeadless, args: ["--no-sandbox"] },
-    puppeteerArgs
-  );
-
-  let browser = await chromium.puppeteer.launch(args);
+  let browser = await chromium.puppeteer.launch({
+    // args: chromium.args,
+    args: ["--no-sandbox"],
+    // defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath,
+    headless: chromium.headless,
+    ignoreHTTPSErrors: true,
+  });
 
   if (cookies) {
     logger.info("using cookies, login will be bypassed");
