@@ -21,23 +21,23 @@ module.exports = async (
 
   const page = await openPage({ browser, cookies, url, puppeteerAuthenticate });
 
-  const content = "" + (await page.content());
+  // const content = "" + (await page.content());
 
-  var cursor = 0;
+  // var cursor = 0;
 
-  var chunksCount = 10;
-  var chunkLength = Math.ceil(content.length / chunksCount);
+  // var chunksCount = 10;
+  // var chunkLength = Math.ceil(content.length / chunksCount);
 
-  console.log("chunkLength", chunkLength);
+  // console.log("chunkLength", chunkLength);
 
-  for (var i = 0; i < chunksCount; i++) {
-    logger.error("page source", {
-      content: content.slice(cursor, cursor + chunkLength),
-      part: i + 1,
-    });
+  // for (var i = 0; i < chunksCount; i++) {
+  //   logger.error("page source", {
+  //     content: content.slice(cursor, cursor + chunkLength),
+  //     part: i + 1,
+  //   });
 
-    cursor += chunkLength;
-  }
+  //   cursor += chunkLength;
+  // }
 
   const profilePageIndicatorSelector = ".pv-profile-section";
   await page
