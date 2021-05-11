@@ -26,7 +26,7 @@ const options = {
   ],
 };
 
-export const logger = winston.createLogger(options);
+const logger = winston.createLogger(options);
 
 const loggerWrapper = (absoluteFilePath) => {
   const file = path.relative(__dirname, absoluteFilePath);
