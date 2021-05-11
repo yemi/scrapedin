@@ -17,7 +17,7 @@ const winston = require("winston");
 const options = {
   transports: [
     new winston.transports.Console({
-      level: logLevels[nodeEnv],
+      level: "debug",
       format: winston.format.combine(
         winston.format.timestamp(),
         winston.format.json()
