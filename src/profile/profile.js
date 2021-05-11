@@ -23,8 +23,6 @@ module.exports = async (
 
   const content = "" + (await page.content());
 
-  var content = "12334343434343434344343434333333212121";
-
   var cursor = 0;
 
   var chunksCount = 10;
