@@ -131,5 +131,8 @@ module.exports = async (
   logger.error("test", { rawProfile });
 
   const cleanedProfile = cleanProfileData(rawProfile);
+
+  await browser.close();
+
   return cleanedProfile;
 };
