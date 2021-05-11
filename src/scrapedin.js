@@ -10,7 +10,7 @@ module.exports = async (
     cookies,
     email,
     password,
-    // isHeadless,
+    isHeadless,
     hasToLog,
     hasToGetContactInfo,
     puppeteerArgs,
