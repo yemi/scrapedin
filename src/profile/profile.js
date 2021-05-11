@@ -21,8 +21,10 @@ module.exports = async (
 
   const page = await openPage({ browser, cookies, url, puppeteerAuthenticate });
 
+  const content = await page.content();
+
   logger.error("page", {
-    page: await page.content(),
+    content,
   });
 
   const profilePageIndicatorSelector = ".pv-profile-section";
